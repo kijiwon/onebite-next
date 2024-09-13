@@ -1,10 +1,8 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { GetServerSidePropsContext, InferGetStaticPropsType } from "next";
 import style from "./[id].module.css";
 import fetchOneBook from "@/lib/fetch-one-book";
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
+export const getStaticProps = async (context: GetServerSidePropsContext) => {
   const id = context.params!.id; // !단언을 사용해 params가 존재함을 단언 <- 이 페이지는 url 파라미터가 있어야 접근할 수 있기 때문
   const book = await fetchOneBook(Number(id));
   return {
@@ -14,7 +12,7 @@ export const getServerSideProps = async (
 
 export default function Page({
   book,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   // null 처리
   if (!book) return "도서의 정보를 불러올 수 없습니다.";
 

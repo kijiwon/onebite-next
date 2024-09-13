@@ -2,11 +2,12 @@ import SearchableLayout from "@/components/searchable-layout";
 import style from "./index.module.css";
 import { ReactNode } from "react";
 import BookItem from "@/components/book-item";
-import { InferGetServerSidePropsType } from "next";
+import { InferGetStaticPropsType } from "next";
 import fetchBooks from "@/lib/fetch-books";
 import fetchRandomBooks from "@/lib/fetch-random-books";
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
+  console.log("인덱스 페이지");
   // Promise.all로 동시에 데이터 패칭
   const [allBooks, recoBooks] = await Promise.all([
     fetchBooks(),
@@ -24,7 +25,7 @@ export default function Home({
   allBooks,
   recoBooks,
 }: // InfergetServerSidePropsType을 사용해 자동 타입 추론
-InferGetServerSidePropsType<typeof getServerSideProps>) {
+InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div className={style.container}>
       <section>
