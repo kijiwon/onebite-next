@@ -11,7 +11,9 @@ export const getStaticPaths = () => {
       { params: { id: "3" } },
     ],
     // paths에 명시되지 않은 경로로 접근할 경우 대체 설정
-    fallback: false, // 존재하지 않는 경로의 요청은 Not Found 처리 
+    // fallback: false, // 존재하지 않는 경로의 요청은 Not Found 처리
+    // fallback: "blocking", // 요청이 들어오면 바로 페이지 사전 렌더링 생성
+    fallback: true, // 먼저 props가 없는 페이지를 렌더링, 이후 바로 데이터가 있는 상태의 페이지 렌더링
   };
 };
 
