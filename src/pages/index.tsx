@@ -18,8 +18,7 @@ export const getStaticProps = async () => {
       allBooks,
       recoBooks,
     },
-    // 재검증 시간(재생성할 시간) 설정
-    revalidate: 3,
+    
   };
 };
 
